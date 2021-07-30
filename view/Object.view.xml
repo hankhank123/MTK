@@ -1,0 +1,244 @@
+<mvc:View controllerName="MTK.ZUMPUP0002.ZUMPUP0002.controller.Object" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:m="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:upload="sap.m.upload"
+	xmlns:navpopover="sap.ui.comp.navpopover">
+	<m:App>
+		<m:pages>
+			<!--<m:Page title="{i18n>podform}">-->
+			<m:Page showHeader="false">
+				<m:subHeader>
+					<m:Toolbar>
+						<m:ToolbarSpacer/>
+						<m:Button text="{i18n>podraft}" type="Transparent" press="onDraft" id="filesmart" visible="{cView>/visible/filesmart}" class="sapUiSmallMarginEnd"/>
+					</m:Toolbar>
+				</m:subHeader>
+<!--				<m:OverflowToolbar class="sapUiMediumMarginTop">
+					<m:ToolbarSpacer/>
+					<m:Button text="{i18n>podraft}" type="Transparent" press="onDraft" id="filesmart" visible="{cView>/visible/filesmart}"/>
+					<m:Button text="{i18n>link}" type="Transparent" press="onLink"/>
+				</m:OverflowToolbar>-->
+				<l:VerticalLayout class="sapUiMediumMarginBegin sapUiSmallMarginTop">
+					<l:content>
+						<m:Label id="documenttype" text="{cData>/hd/bsart} {cData>/hd/batxt}"/>
+						<m:Label text=""/>
+						<navpopover:SmartLink 
+						id="ebelnid" 
+						text="{cData>/hd/ebeln}" 
+						semanticObject="PurchaseOrder"
+						beforePopoverOpens="onBpop"
+					    enableAvailableActionsPersonalization="false"/>
+					</l:content>
+				</l:VerticalLayout>
+				<m:content>
+					<m:VBox class="sapUiSmallMargin">
+						<m:List showUnread="true">
+							<m:StandardListItem title="{i18n>purtitle}" unread="true"/>
+						</m:List>
+						<f:SimpleForm id="SimpleForm1" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="2" labelSpanM="4" labelSpanS="12"
+							adjustLabelSpan="false" emptySpanXL="0" emptySpanL="2" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+							singleContainerFullSize="false">
+							<f:content>
+								<l:VerticalLayout>
+									<m:Label text="{i18n>vendorname}" design="Bold"/>
+									<!--<m:Input change="onChange" value="{cData>/hd/name1}" width="65%" editable="false"/>-->
+									<navpopover:SmartLink 
+									id="vendornameid" 
+									text="{cData>/hd/name1}" 
+									semanticObject="Supplier"
+									beforePopoverOpens="onVpop"
+					                enableAvailableActionsPersonalization="false"
+									class="sapUiTinyMarginTop"/>
+									<m:Label text="{i18n>address}" design="Bold" class="sapUiMediumMarginTop"/>
+									<!--<m:Input change="onChange" value="{cData>/hd/zaddress}" width="65%" editable="false"/>-->
+									<m:Text text="{cData>/hd/zaddress}" class="sapUiTinyMarginTop"/>
+									<m:Label text="{i18n>contactperson}" design="Bold" class="sapUiMediumMarginTop"/>
+									<m:Text text="{cData>/hd/zcontact}" class="sapUiTinyMarginTop"/>
+								</l:VerticalLayout>
+								<l:VerticalLayout>
+									<m:Label text="{i18n>buyer}" design="Bold" class="sapUiTinyMarginTop"/>
+									<m:Text text="{cData>/hd/ernam}" class="sapUiTinyMarginTop"/>
+									<m:Label text="{i18n>status}" design="Bold" class="sapUiMediumMarginTop"/>
+									<m:Text text="{cData>/hd/frgke_desc}" class="sapUiTinyMarginTop"/>
+									<m:Label text="{i18n>createdate}" design="Bold" class="sapUiMediumMarginTop"/>
+									<m:Text text="{cData>/hd/aedat}" class="sapUiTinyMarginTop"/>
+								</l:VerticalLayout>
+							</f:content>
+						</f:SimpleForm>
+						<m:List showUnread="true">
+							<m:StandardListItem visible="{cView>/visible/basictitle}" title="{i18n>basictitle}" unread="true"/></m:List>
+						<f:SimpleForm visible="{cView>/visible/sf}" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="2" labelSpanM="4"
+							labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="1" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+							singleContainerFullSize="false">
+							<f:content>
+								<l:VerticalLayout>
+									<m:Label visible="{cView>/visible/paymentterms}" text="{i18n>paymentterms}" design="Bold" class="sapUiTinyMarginTop"/>
+									<m:Text visible="{cView>/visible/paymentterms}" text="{cData>/hd/zzterm}" class="sapUiTinyMarginTop"/>
+									<!--	<m:Input visible="{cView>/visible/paymentterms}" change="onChange" value="{cData>/hd/zzterm}" width="30%" editable="false"/>-->
+									<m:Label visible="{cView>/visible/tradeterms}" text="{i18n>tradeterms}" design="Bold" class="sapUiMediumMarginTop"/>
+									<m:Text visible="{cView>/visible/tradeterms}" text="{cData>/hd/zinco1}" class="sapUiTinyMarginTop"/>
+									<!--<m:Panel visible="{cView>/visible/panel1}" class="sapUiSmallMarginBottom"></m:Panel>-->
+									<m:Label visible="{cView>/visible/purchasetype}" text="{i18n>purchasetype}" design="Bold" class="sapUiMediumMarginTop"/>
+									<m:Text visible="{cView>/visible/purchasetype}" text="{cData>/hd/zpur_type_desc}" class="sapUiTinyMarginTop"/>
+									<!--<m:Label visible="{cView>/visible/purchasetype}" text="{i18n>description}"/>-->
+									<!--	<m:Input change="onChange" value="" width="70%" class="sapUiTinyMarginTop"/>-->
+									<!--<m:TextArea visible="{cView>/visible/purchasetype}" cols="200" height="80px" placeholder="Enter Comments" editable="false"/>-->
+									<!--<m:Label visible="{cView>/visible/purchasetype}"></m:Label>
+									<m:Panel visible="{cView>/visible/purchasetype}" class="sapUiSmallMarginBottom"></m:Panel>-->
+									<m:Label visible="{cView>/visible/vendorselection}" text="{i18n>vendorselection}" design="Bold" class="sapUiMediumMarginTop"/>
+									<m:Text visible="{cView>/visible/vendorselection}" text="{cData>/hd/zvend_type_desc}" class="sapUiTinyMarginTop"/>
+									<!--<m:Label visible="{cView>/visible/vendorselection}" text="{i18n>description}"/>
+									<m:TextArea visible="{cView>/visible/vendorselection}" cols="200" height="80px" placeholder="Enter Comments" editable="false"/>-->
+									<!--<m:Input change="onChange" value="" width="70%" class="sapUiTinyMarginTop"/>-->
+									<!--<m:Label visible="{cView>/visible/vendorselection}"></m:Label>
+									<m:Panel visible="{cView>/visible/vendorselection}" class="sapUiSmallMarginBottom"></m:Panel>-->
+									<m:Label visible="{cView>/visible/contractinformation}" text="{i18n>contractinformation}" design="Bold" class="sapUiMediumMarginTop"/>
+									<m:Text visible="{cView>/visible/contractinformation}" text="{cData>/hd/zcontract_no}" class="sapUiTinyMarginTop"/>
+								</l:VerticalLayout>
+							</f:content>
+						</f:SimpleForm>
+						<m:List showUnread="true">
+							<m:StandardListItem title="{i18n>podetailstitle}" unread="true"/></m:List>
+						<m:Table id="podetail" class="sapUiSmallMarginTop" items="{ path:'cData>/it', sorter:{ path: 'ebelp' } }">
+							<m:columns>
+								<m:Column width="4.5em">
+									<m:Text text="{i18n>item}"/>
+								</m:Column>
+								<m:Column width="20em">
+									<m:Text text="{i18n>Text}"/>
+								</m:Column>
+								<m:Column>
+									<m:Text text="{i18n>Qty}"/>
+								</m:Column>
+								<m:Column hAlign="Right">
+									<m:Text text="{i18n>orderunit}"/>
+								</m:Column>
+								<m:Column hAlign="Right">
+									<m:Text text="{i18n>unitprice}"/>
+								</m:Column>
+								<m:Column hAlign="Right">
+									<m:Text text="{i18n>baseline}"/>
+								</m:Column>
+								<m:Column>
+									<m:Text text="{i18n>deliverydate}"/>
+								</m:Column>
+								<m:Column>
+									<m:Text text="{i18n>PRNo}"/>
+								</m:Column>
+							</m:columns>
+							<m:items>
+								<m:ColumnListItem>
+									<m:cells>
+										<m:Text text="{cData>ebelp} {cData>loekz}"/>
+										<m:Text text="{cData>zzitemdes}"/>
+										<m:Text text="{cData>menge}"/>
+										<m:Text text="{cData>meins}"/>
+										<m:Text text="{cData>unitprice} {cData>cuky}"/>
+										<m:Text text="{cData>zbas}"/>
+										<m:Text text="{cData>eeind}"/>
+										<m:Link text="{cData>zewf_prno}" wrapping="true" target="_blank" href="{cData>prlink}"/>
+										<!--<m:Text text="{cData>/it/prlink}"/>-->
+									</m:cells>
+								</m:ColumnListItem>
+							</m:items>
+						</m:Table>
+						<f:SimpleForm id="SimpleForm3" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+							adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+							singleContainerFullSize="false">
+							<f:content>
+
+								<l:VerticalLayout>
+									<m:Label text="{i18n>beforetaxes}" design="Bold"/>
+									<m:VBox width="25%" alignItems="End">
+										<m:Text text="{cData>/hd/before_tax} {cData>/hd/waers}" class="sapUiTinyMarginTop"/></m:VBox>
+									<m:Label text="{i18n>taxesamount}" design="Bold" class="sapUiMediumMarginTop"/>
+									<m:VBox width="25%" alignItems="End">
+										<m:Text text="{cData>/hd/tax} {cData>/hd/waers}" textAlign="Right" class="sapUiTinyMarginTop"/></m:VBox>
+									<m:Label text="{i18n>aftertaxes}" design="Bold" class="sapUiMediumMarginTop"/>
+									<m:VBox width="25%" alignItems="End">
+										<m:Text text="{cData>/hd/after_tax} {cData>/hd/waers}" textAlign="Right" class="sapUiTinyMarginTop"/></m:VBox>
+								</l:VerticalLayout>
+								<l:VerticalLayout>
+									<m:Label visible="{cView>/visible/yoy}" text="{i18n>yoy}" design="Bold"/>
+									<m:VBox width="25%" alignItems="End">
+										<m:Text visible="{cView>/visible/yoy}" text="{cData>/hd/yoy}" textAlign="Right" class="sapUiTinyMarginTop"/></m:VBox>
+								</l:VerticalLayout>	
+							</f:content>
+						</f:SimpleForm>
+						<m:List showUnread="true">
+							<m:StandardListItem visible="{cView>/visible/buyercomment}" title="{i18n>buyercommentstitle}" unread="true" description=""/></m:List>
+						<m:ScrollContainer visible="{cView>/visible/buyercomment}" height="100%" width="100%" horizontal="true" vertical="true">
+							<m:FlexBox direction="Column" renderType="Div" class="sapUiSmallMargin">
+								<m:PDFViewer id="myPdfViewer" visible="true" source="" title="" height="">
+									<m:layoutData>
+										<m:FlexItemData growFactor="1"/>
+									</m:layoutData>
+								</m:PDFViewer>
+							</m:FlexBox>
+						</m:ScrollContainer>
+						<!--<m:TextArea id="TextArea" cols="200" height="100px" placeholder="Enter Comments" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>-->
+						<m:List showUnread="true">
+							<m:StandardListItem title="{i18n>attachmentstitle}" unread="true" class="sapUiSmallMarginTop"/></m:List>
+						<!--						<m:UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" sameFilenameAllowed="true"
+							instantUpload="false" noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload" change="onChange"
+							fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
+							uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>-->
+						<upload:UploadSet id="UploadSet" instantUpload="false" showIcons="false" uploadEnabled="{cView>/editable/attach}" terminationEnabled="true"
+							class="sapUiSmallMarginBottom" uploadUrl="/sap/opu/odata/SAP/ZEPO_EXTENSION_SRV/FileSet">
+							<upload:items>
+								<upload:UploadSetItem fileName="{cAttach>fileName}" mediaType="{cAttach>mediaType}" url="{cAttach>url}" visibleEdit="false"
+									enabledEdit="false" enabledRemove="false" visibleRemove="false" thumbnailUrl="{cAttach>thumbnailUrl}" uploadState="{cAttach>uploadState}"
+									attributes="{path: 'cAttach>attributes', templateShareable: false}" statuses="{path : 'cAttach>statuses', templateShareable : false}">
+									<upload:attributes>
+										<m:ObjectAttribute title="{cAttach>title}" text="{cAttach>text}" active="{cAttach>active}"/>
+									</upload:attributes>
+									<upload:statuses>
+										<m:ObjectStatus title="{cAttach>title}" text="{cAttach>text}" state="{cAttach>state}" icon="{icon}"/>
+									</upload:statuses>
+								</upload:UploadSetItem>
+							</upload:items>
+						</upload:UploadSet>
+						<m:List showUnread="true">
+							<m:StandardListItem visible="{cView>/visible/conditions}" title="{i18n>conditionstitle}" unread="true"/></m:List>
+						<m:Label visible="{cView>/visible/conditions}" text="{i18n>terms}" class="sapUiSmallMarginTop"/>
+						<m:TextArea visible="{cView>/visible/conditions}" id="TextArea1" editable="false" cols="200" height="180px" value="" class="sapUiSmallMarginBottom"/>
+						<m:List showUnread="true">
+							<m:StandardListItem title="{i18n>historicalinformationtitle}" unread="true"/></m:List>
+						<m:Table id="historydetail" class="sapUiSmallMarginTop" items="{ path:'cData>/his' }">
+							<m:columns>
+								<m:Column>
+									<m:Text text="{i18n>name}"/>
+								</m:Column>
+								<m:Column>
+									<m:Text text="{i18n>department}"/>
+								</m:Column>
+								<m:Column>
+									<m:Text text="{i18n>approveddate}"/>
+								</m:Column>
+								<m:Column>
+									<m:Text text="{i18n>status}"/>
+								</m:Column>
+								<m:Column>
+									<m:Text text="{i18n>comments}"/>
+								</m:Column>
+							</m:columns>
+							<m:items>
+								<m:ColumnListItem>
+									<m:cells>
+										<m:Text text="{cData>name}"/>
+										<m:Text text="{cData>department}"/>
+										<m:Text text="{cData>approve_date}"/>
+										<m:Text text="{cData>status}"/>
+										<m:Text text="{cData>ecomment}"/>
+									</m:cells>
+								</m:ColumnListItem>
+							</m:items>
+						</m:Table>
+						<m:Label text=""/>
+						<m:Label text=""/>
+						<m:Label text=""/>
+						<m:Label text=""/>
+					</m:VBox>
+				</m:content>
+			</m:Page>
+		</m:pages>
+	</m:App>
+</mvc:View>
