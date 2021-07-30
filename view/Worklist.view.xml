@@ -1,0 +1,1609 @@
+<mvc:View
+	controllerName="MTK.ZUMPUP0001.controller.Worklist"
+xmlns:mvc="sap.ui.core.mvc" 
+displayBlock="true" 
+xmlns:m="sap.m" 
+xmlns:c="sap.ui.core" 
+xmlns:f="sap.ui.layout.form" 
+xmlns:u="sap.ui.unified" 
+xmlns:footerbar="sap.ushell.ui.footerbar"
+xmlns:l="sap.ui.layout"
+xmlns:upload="sap.m.upload"
+	>
+	<m:App>
+		<m:pages id="pag">
+			<m:Page title = "Vendor Survey form" >
+			<m:content>
+			<m:Image src="../zvendor/img/ShopCarouselCreditCard.jpg" width="100%" height="50%"/>
+		<m:IconTabBar
+		id="idIconTabBarNoIcons"
+		expanded="true"
+		select="onTab"
+		expandable="false"
+		class="sapUiResponsiveContentPadding">
+		<m:items>
+			<m:IconTabFilter text="{i18n>SystemData}" key="sys" id="tsys" >
+				<m:Panel headerText="{i18n>SystemData}" id="sys" class="sapUiResponsiveMargin" width="auto" visible="true">
+					
+				<f:SimpleForm id="sysform"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title=""
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" >
+			
+				<f:content>
+					<m:Label text="{i18n>Vendor_Code}"/>
+					<m:Input id="vendor_code" 
+					         value="{cData>/disp/vendor_code}"
+					         editable="false"
+					         maxLength="10"
+					         liveChange="_validateInput"/>
+					
+					<m:Label text="{i18n>Create_From}" />
+					        <m:Input id="buyer_name" 
+					         value="{cData>/disp/buyer_name}"
+					         description="{cData>/desc/buyer_name_desc}"
+					         editable="false"
+					         maxLength="12"/>
+							
+					<m:HBox> 
+					    <m:FlexBox alignItems="Center">
+						    <m:Label text="{i18n>Extension}"/>
+							<m:Input id="buyer_tel" 
+							value="{cData>/disp/buyer_tel}"
+							editable="{cView>/editable/sys}"
+							maxLength="16"
+							liveChange="_validateInput"/>
+						</m:FlexBox>	
+					</m:HBox>
+					
+					<m:Label text="{i18n>Payment_Entity}" />
+					<m:Input id="company" 
+							 required="true"
+					         value="{cData>/disp/company}" 
+					         editable="{cView>/editable/sys}"
+					         description="{cData>/desc/company_desc}"
+					         maxLength="4"
+					         showValueHelp="true" 
+					         valueHelpOnly="true"  
+					         valueHelpRequest="vhBukrs"  
+					         fieldGroupIds="sys,checkInputs"
+					         fieldWidth = "30%"
+					         liveChange="_validateInput"/>
+					         
+					         
+					<m:Label text="{i18n>Payment_Country}" />
+					<m:Input id="compland" 
+					         value="{cData>/disp/compland}" 
+					         visible="false"
+					         editable="false"/>					         
+					
+					<m:Label text="{i18n>acc_group}" />
+					<m:Input id="acc_groups" 
+							 required="true"
+					         value="{cData>/disp/acc_group}" 
+					    	 description="{cData>/desc/acc_group_desc}"
+					         editable="{cView>/editable/sys1}"
+					         maxLength="4"
+					         showValueHelp="true" 
+					         valueHelpOnly="true"  
+					         valueHelpRequest="vhAccgrp"  
+					         fieldGroupIds="sys,checkInputs"
+					         fieldWidth = "30%"
+					         liveChange="_validateInput"/>
+					
+					<m:Label text="{i18n>Vendor_Name}"/>
+					<m:Input id="bas_vdrname" 
+							 required="true"
+					         value="{cData>/disp/bas_vdrname}"
+					         editable="{cView>/editable/sys}"
+					         maxLength="30"
+					         fieldGroupIds="sys,checkInputs"
+					         liveChange="_validateInput"/>
+					         
+					<m:Label text="{i18n>Vendor_Mail_Address}"/>
+					<m:Input id="bas_email" 
+					    	 value="{cData>/disp/bas_email}" 
+					    	 editable="{cView>/editable/sys}"
+					    	 maxLength="241" 
+					    	 required="true"
+					    	 fieldGroupIds="sys,checkInputs"
+					    	 liveChange="_validateInput"/>
+						
+					<m:Label text="{i18n>Sales_Contact}"/>
+					<m:Input id="bas_contname" 
+						     value="{cData>/disp/bas_contname}"
+						 	editable="{cView>/editable/sys}"
+				         	maxLength="30"
+				         	liveChange="_validateInput"/>									
+						
+					
+				</f:content>
+				</f:SimpleForm>
+				</m:Panel>
+			<m:Text text="{i18n>MediaTek_Disclaimer}"/>	
+			</m:IconTabFilter>
+			
+			
+			<m:IconTabFilter text="{i18n>BasicInformation}" key="bas" id="tbas">
+				<m:Panel headerText="{i18n>BasicInformation}" id="bas" class="sapUiResponsiveMargin" width="auto" visible="true">
+				<f:SimpleForm id="basform" 
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title=""
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" >
+			
+				<f:content>
+					<m:Label text="{i18n>Title}"/>
+					<m:Input id="title" 
+					         value="{cData>/disp/title}" 
+					         editable="{cView>/editable/bas}"
+					         description="{cData>/desc/title_desc}"
+					         required="true"
+					         maxLength="15"
+					         showValueHelp="true" 
+					         valueHelpOnly="true"  
+					         valueHelpRequest="vhTitle"  
+					         fieldGroupIds="bas,checkInputs"
+					         liveChange="_validateInput"/>
+					
+					<m:Label text="{i18n>Full_Company_Name}"/>
+					<m:Input id="name1" 
+							 value="{cData>/disp/name1}" 
+							 editable="{cView>/editable/bas}"
+							 required="true" 
+							 maxLength="140"
+							 fieldGroupIds="bas,checkInputs"
+							 liveChange="_validateInput"/>
+				
+						 
+
+					
+					<m:Label text="{i18n>ShortName/SearchTerm}"/>
+					<m:Input id="sort" 
+							 value="{cData>/disp/sort}" 
+							 editable="{cView>/editable/bas}"
+							 required="true"
+							 maxLength="20"
+							 fieldGroupIds="bas,checkInputs"
+							 liveChange="_validateInput"/>
+							 
+					<m:Label text="{i18n>Country}"/>
+					<m:Input id="country" 
+							 value="{cData>/disp/country}" 
+							 editable="{cView>/editable/bas}"
+							  description="{cData>/desc/country_desc}"
+							 required="true" 
+							 valueHelpOnly="true"  
+							 showValueHelp="true" 
+							 valueHelpRequest="vhLand1"
+							 maxLength="3"
+							 fieldGroupIds="bas,checkInputs"
+							 liveChange="_validateInput"/>
+							 
+					<m:Label text="{i18n>Postal_Code}"/>
+					<m:Input id="post_code" 
+							 value="{cData>/disp/post_code}"
+							 editable="{cView>/editable/bas}"
+							 required="false"
+							 maxLength="10"
+							 fieldGroupIds="bas,checkInputs"
+							 liveChange="_validateInput"/>
+					
+					<m:Label text="{i18n>Address}"/>
+					<m:Input id="street" 
+							 value="{cData>/disp/street}" 
+							 editable="{cView>/editable/bas}"
+							 required="true"
+							 maxLength="120"
+							 fieldGroupIds="bas,checkInputs"
+							 liveChange="_validateInput"/>
+					
+					<m:Label text="{i18n>Tel}"/>
+					<m:Input id="tel" 
+							 value="{cData>/disp/tel}" 
+							 editable="{cView>/editable/bas}"
+							 required="true"
+							 maxLength="16"
+							 fieldGroupIds="bas,checkInputs"
+							 liveChange="_validateInput"/>
+							 
+					<m:Label text="{i18n>Fax}"/>
+					<m:Input id="fax" 
+							 value="{cData>/disp/fax}"
+							 editable="{cView>/editable/bas}"
+							 required="false"
+							 maxLength="31"
+							 fieldGroupIds="bas,checkInputs"
+							 liveChange="_validateInput"/>
+					
+					<m:Label text="{i18n>VAT/GUI/TAXID/PAN}" 
+					required="true"
+					labelFor="vat_code"/>
+					<m:HBox>
+					<m:Input id="vat_code" 
+							 value="{cData>/disp/vat_code}" 
+							 editable="{cView>/editable/bas}"
+							 description= ""
+							 required="true"
+							 maxLength="20"
+							 fieldWidth = "100%"
+							 showValueHelp="true" 
+					         valueHelpOnly="false"  
+					         valueHelpRequest="vhVat" 
+							 fieldGroupIds="bas,checkInputs"
+							 liveChange="_validateInput"/>
+				 		 
+					<m:Text id="vat_desc" 
+							class="sapUiSmallMarginBegin"
+						    text = "{cData>/desc/vat_code_desc}" />
+						
+					</m:HBox>
+					
+					<m:Label text="{i18n>Payment_Term}"/>
+					<m:Input id="terms_pmt" 
+							 value="{cData>/disp/terms_pmt}" 
+							 editable="{cView>/editable/bas}"
+							  description="{cData>/desc/terms_pmt_desc}"
+					         required="true" 
+					         maxLength="4"
+					         fieldWidth = "30%"
+					         valueHelpOnly="true"  
+					         showValueHelp="true" 
+					         valueHelpRequest="vhZterm" 
+					         fieldGroupIds="bas,checkInputs"
+					         liveChange="_validateInput"/>
+					          
+					<m:Label text="{i18n>GST_Number}"/>
+					<m:Input id="stcd3" 
+							 value="{cData>/disp/stcd3}"
+							 editable="{cView>/editable/gst}"
+							 visible="{cView>/visible/gst}"
+					         required="false" 
+					         maxLength="18"
+					         fieldGroupIds="bas,checkInputs"
+					         liveChange="_validateInput"/>
+							 
+					<m:Label text="{i18n>Nature_Of_Vendor}"/>
+					<m:Input id="vndtyp" 
+							 value="{cData>/disp/vndtyp}"
+							 editable="{cView>/editable/gst}"
+							  description="{cData>/desc/vndtyp_desc}"
+						 	 visible="{cView>/visible/gst}"
+					         required="false" 
+					         maxLength="1"
+					         valueHelpOnly="true"  
+					         showValueHelp="true" 
+					         valueHelpRequest="vhVndtyp" 
+					         fieldGroupIds="bas,checkInputs"
+					         liveChange="_validateInput"/>
+							 
+					<m:Label text="{i18n>MSME_Registration_Number}"/>
+					<m:Input id="stcd4" 
+							 value="{cData>/disp/stcd4}"
+							 editable="{cView>/editable/gst}"
+						 	 visible="{cView>/visible/gst}"
+					         required="false" 
+					         maxLength="18"
+					         fieldGroupIds="bas,checkInputs"
+					         liveChange="_validateInput"/>
+							 
+					<m:Label text="{i18n>Is_GST_Registered?}"/>
+					<m:CheckBox name="Is_GST_Registered?"
+								editable="{cView>/editable/gst}"
+								 visible="{cView>/visible/gst}"
+								selected="{cData>/disp/is_gst}" 
+								id="is_gst" 
+								select="onCk"/>
+								
+					<m:Label text="{i18n>Is_Composition_Scheme?}"/>
+					<m:CheckBox name="Is_Composition_Scheme?" 
+							    editable="{cView>/editable/gst}"
+						    	 visible="{cView>/visible/gst}"
+					            selected="{cData>/disp/is_cmpschm}" 
+					            id="is_cmpschm" 
+					            select="onCk"/>
+					            
+					<m:Label text="{i18n>Is_Reverse_Charge?}"/>
+					<m:CheckBox name="Is_Reverse_Charge?" 
+								editable="{cView>/editable/gst}"
+								 visible="{cView>/visible/gst}"
+					            selected="{cData>/disp/is_revcharge}" 
+					            id="is_revcharge" 
+					            select="onCk"/>
+				</f:content>
+				</f:SimpleForm>
+				</m:Panel>
+			<m:Text text="{i18n>MediaTek_Disclaimer}"/>	
+			</m:IconTabFilter>
+			
+			
+			<m:IconTabFilter text="{i18n>TransactionData}" key="tr" id="ttr">
+				
+				<m:Panel headerText="{i18n>TransactionData}" id="tr" class="sapUiResponsiveMargin" width="auto" visible="true">
+				<f:SimpleForm id="tr01" 
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title=""
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+				<f:content>
+					<m:Label text="{i18n>Is_Distributor/Agent?}"/>
+					<m:CheckBox name="Is_Distributor/Agent?" 
+								editable="{cView>/editable/tr}"
+					            selected="{cData>/disp/dist_agent}" 
+					            id="dist_agent" 
+					            select="onCk"
+					            />
+					
+					<m:Label text="{i18n>Order_Currency}"/>
+					<m:Input id="currency" 
+							 value="{cData>/disp/currency}"
+							 editable="{cView>/editable/tr}"
+							  description="{cData>/desc/currency_desc}"
+					         required="true" 
+					         maxLength="5"
+				    		 fieldWidth="30%"
+					         valueHelpOnly="true"  
+					         showValueHelp="true" 
+					         valueHelpRequest="vhBkwaers" 
+					         fieldGroupIds="tr,checkInputs"
+					         liveChange="_validateInput"/>
+					
+					<m:Label id="incotermst" text="{i18n>Delivery_Term}"/>
+					<m:Input id="incoterms" 
+							 value="{cData>/disp/incoterms}"
+							 editable="{cView>/editable/tr}"
+							 description="{cData>/desc/incoterms_desc}"
+					         required="false" 
+					         maxLength="3"
+					         fieldWidth="30%"
+					         valueHelpOnly="true"  
+					         showValueHelp="true" 
+					         valueHelpRequest="vhTrsterm" 
+					         fieldGroupIds="tr,checkInputs"
+					         liveChange="_validateInput"/>
+					
+					
+					<m:Label text="{i18n>Others}" labelFor="cb_incoterms"/>
+					<m:HBox>
+						<m:CheckBox  id="cb_incoterms"
+								     selected="{cData>/disp/cb_incoterms}"
+								     editable="{cView>/editable/tr/}"
+								     select="onCkother_incoterms"/>
+						<m:Input id="other_incoterms" 
+								 value="{cData>/disp/other_incoterms}"
+								 editable="{cView>/editable/tr}"
+						         required="false" 
+						         maxLength="40"
+						         fieldGroupIds="tr,checkInputs" 
+						         liveChange="_validateInput"/>
+					</m:HBox>
+				</f:content>	
+				</f:SimpleForm>
+					
+				<f:SimpleForm id="cp01" 
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="01"
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">	
+				<f:content>	
+					<m:Label text="{i18n>Title}"/>
+					<m:Input id="cp01cont_title" 
+							 value="{cData>/disp/cp01cont_title}"
+							 editable="{cView>/editable/tr}"
+							  description="{cData>/desc/cp01cont_title_desc}"
+					         required="false"
+					         maxLength="30"
+					         showValueHelp="true" 
+					         valueHelpOnly="true"  
+					         valueHelpRequest="vhTitle"  
+					         fieldGroupIds="tr,checkInputs,cp01"
+					         liveChange="_validateInput"/>
+					
+					<m:Label text="{i18n>First_Name}"/>
+					<m:Input id="cp01contact_fname" 
+							 required="false"
+					         value="{cData>/disp/cp01contact_fname}"
+					         editable="{cView>/editable/tr}"
+					         maxLength="30"
+					         fieldGroupIds="tr,checkInputs,cp01"
+					         liveChange="_validateInput"/>
+
+					<m:Label text="{i18n>Last_Name}"/>
+					<m:Input id="cp01contact_lname" 
+							 required="false"
+					         value="{cData>/disp/cp01contact_lname}"
+					         editable="{cView>/editable/tr}"
+					         maxLength="30"
+					         fieldGroupIds="tr,checkInputs,cp01"
+					         liveChange="_validateInput"/>					
+					
+					<m:Label text="{i18n>Function}"/>
+					<m:Input id="cp01cont_func" 
+							 required="false"
+							 value="{cData>/disp/cp01cont_func}"
+							 editable="{cView>/editable/tr}"
+							 description="{cData>/desc/cp01cont_func_desc}"
+							 showValueHelp="true" 
+					         valueHelpOnly="true"  
+					         valueHelpRequest="vhCpfunc"
+					         maxLength="30"
+					         fieldGroupIds="tr,checkInputs,cp01"
+					         liveChange="_validateInput"/>
+					
+					
+					<m:Label text="{i18n>Telephone}"/>
+				    <m:Input id="cp01cont_tel" 
+								 required="false"
+								 value="{cData>/disp/cp01cont_tel}"
+								 editable="{cView>/editable/tr}"
+						         maxLength="16"
+						         fieldGroupIds="tr,checkInputs,cp01"
+						         liveChange="_validateInput"/>
+					<m:HBox>
+					   <m:FlexBox alignItems="Center">	         
+						<m:Label text="{i18n>Extension}"/>
+						<m:Input id="cp01cont_extens"
+								 required="false"
+								 value="{cData>/disp/cp01cont_extens}"
+								 editable="{cView>/editable/tr}"
+						         maxLength="10"
+						         fieldGroupIds="tr,checkInputs,cp01"
+						         liveChange="_validateInput"/>
+						</m:FlexBox>         
+					</m:HBox>
+					
+					
+					<m:Label text="{i18n>Mobile_Phone}"/>
+					<m:Input id="cp01cont_mobile" 
+							 required="false"
+							 value="{cData>/disp/cp01cont_mobile}"
+							 editable="{cView>/editable/tr}"
+						     maxLength="16"
+						     fieldGroupIds="tr,checkInputs,cp01"
+						     liveChange="_validateInput"/>
+					
+					
+					<m:Label text="{i18n>E-mail}"/>
+					<m:Input id="cp01cont_email" 
+							 required="false"
+							 value="{cData>/disp/cp01cont_email}"
+							 editable="{cView>/editable/tr}"
+						     maxLength="241"
+						     fieldGroupIds="tr,checkInputs,cp01"
+						     liveChange="_validateInput"/>
+				</f:content>
+				</f:SimpleForm>
+				<f:SimpleForm id="cp02" 
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="02"
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+				<f:content>	
+					<m:Label text="{i18n>Title}"/>
+					<m:Input id="cp02cont_title" 
+							 value="{cData>/disp/cp02cont_title}"
+							 editable="{cView>/editable/tr}"
+							  description="{cData>/desc/cp02cont_title_desc}"
+					         required="false"
+					         maxLength="30"
+					         showValueHelp="true" 
+					         valueHelpOnly="true"  
+					         valueHelpRequest="vhTitle"  
+					         fieldGroupIds="tr,checkInputs,cp02"
+					         liveChange="_validateInput"/>
+					
+					<m:Label text="{i18n>First_Name}"/>
+					<m:Input id="cp02contact_fname" 
+							 required="true"
+					         value="{cData>/disp/cp02contact_fname}"
+					         editable="{cView>/editable/tr}"
+					         maxLength="30"
+					         fieldGroupIds="tr,checkInputs,cp02"
+					         liveChange="_validateInput"/>
+
+					<m:Label text="{i18n>Last_Name}"/>
+					<m:Input id="cp02contact_lname" 
+							 required="true"
+					         value="{cData>/disp/cp02contact_lname}"
+					         editable="{cView>/editable/tr}"
+					         maxLength="30"
+					         fieldGroupIds="tr,checkInputs,cp02"
+					         liveChange="_validateInput"/>					
+					
+					<m:Label text="{i18n>Function}"/>
+					<m:Input id="cp02cont_func" 
+							 required="false"
+							 value="{cData>/disp/cp02cont_func}"
+							 editable="{cView>/editable/tr}"
+							 description="{cData>/desc/cp02cont_func_desc}"
+  							 showValueHelp="true" 
+					         valueHelpOnly="true"  
+					         valueHelpRequest="vhCpfunc"  
+					         maxLength="30"
+					         fieldGroupIds="tr,checkInputs,cp02"
+					         liveChange="_validateInput"/>
+					
+					
+                    <m:Label text="{i18n>Telephone}"/>
+						<m:Input id="cp02cont_tel" 
+								 required="false"
+								 value="{cData>/disp/cp02cont_tel}"
+								 editable="{cView>/editable/tr}"
+						         maxLength="16"
+						         fieldGroupIds="tr,checkInputs,cp02"
+						         liveChange="_validateInput"/>
+					<m:HBox>	 
+					   <m:FlexBox alignItems="Center">
+						<m:Label text="{i18n>Extension}"/>
+						<m:Input id="cp02cont_extens"
+								 required="false"
+								 value="{cData>/disp/cp02cont_extens}"
+								 editable="{cView>/editable/tr}"
+						         maxLength="10"
+						         fieldGroupIds="tr,checkInputs,cp02"
+						         liveChange="_validateInput"/>
+					   </m:FlexBox>	         
+					</m:HBox>
+					
+					
+					<m:Label text="{i18n>Mobile_Phone}"/>
+					<m:Input id="cp02cont_mobile" 
+							 required="false"
+							 value="{cData>/disp/cp02cont_mobile}"
+							 editable="{cView>/editable/tr}"
+						     maxLength="16"
+						     fieldGroupIds="tr,checkInputs"
+						     liveChange="_validateInput"/>
+					
+					
+					<m:Label text="{i18n>E-mail}"/>
+					<m:Input id="cp02cont_email" 
+							 required="false"
+							 value="{cData>/disp/cp02cont_email}"
+							 editable="{cView>/editable/tr}"
+						     maxLength="241"
+						     fieldGroupIds="tr,checkInputs,cp02"
+						     liveChange="_validateInput"/>
+				</f:content>
+				</f:SimpleForm>
+				<f:SimpleForm id="cp03"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="03"
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+				<f:content>	
+					<m:Label text="{i18n>Title}"/>
+					<m:Input id="cp03cont_title" 
+							 value="{cData>/disp/cp03cont_title}"
+							 editable="{cView>/editable/tr}"
+							  description="{cData>/desc/cp03cont_title_desc}"
+					         required="false"
+					         maxLength="30"
+					         showValueHelp="true" 
+					         valueHelpOnly="true"  
+					         valueHelpRequest="vhTitle"  
+					         fieldGroupIds="tr,checkInputs"
+					         liveChange="_validateInput"/>
+					
+					<m:Label text="{i18n>First_Name}"/>
+					<m:Input id="cp03contact_fname" 
+							 required="true"
+					         value="{cData>/disp/cp03contact_fname}"
+					         editable="{cView>/editable/tr}"
+					         maxLength="30"
+					         fieldGroupIds="tr,checkInputs,cp03"
+					         liveChange="_validateInput"/>
+
+					<m:Label text="{i18n>Last_Name}"/>
+					<m:Input id="cp03contact_lname" 
+							 required="true"
+					         value="{cData>/disp/cp03contact_lname}"
+					         editable="{cView>/editable/tr}"
+					         maxLength="30"
+					         fieldGroupIds="tr,checkInputs,cp03"
+					         liveChange="_validateInput"/>					
+					
+					<m:Label text="{i18n>Function}"/>
+					<m:Input id="cp03cont_func" 
+							 required="false"
+							 value="{cData>/disp/cp03cont_func}"
+							 editable="{cView>/editable/tr}"
+							 description="{cData>/desc/cp03cont_func_desc}"
+ 							 showValueHelp="true" 
+					         valueHelpOnly="true"  
+					         valueHelpRequest="vhCpfunc"  
+					         maxLength="30"
+					         fieldGroupIds="tr,checkInputs,cp03"
+					         liveChange="_validateInput"/>
+					
+					
+					<m:Label text="{i18n>Telephone}"/>
+						<m:Input id="cp03cont_tel" 
+								 required="false"
+								 value="{cData>/disp/cp03cont_tel}"
+								 editable="{cView>/editable/tr}"
+						         maxLength="16"
+						         fieldGroupIds="tr,checkInputs,cp03"
+						         liveChange="_validateInput"/>
+					<m:HBox>
+					  <m:FlexBox alignItems="Center">		         
+						<m:Label text="{i18n>Extension}"/>
+						<m:Input id="cp03cont_extens"
+								 required="false"
+								 value="{cData>/disp/cp03cont_extens}"
+								 editable="{cView>/editable/tr}"
+						         maxLength="10"
+						         fieldGroupIds="tr,checkInputs,cp03"
+						         liveChange="_validateInput"/>
+					   </m:FlexBox>
+					</m:HBox>
+					
+					
+					<m:Label text="{i18n>Mobile_Phone}"/>
+					<m:Input id="cp03cont_mobile" 
+							 required="false"
+							 value="{cData>/disp/cp03cont_mobile}"
+							 editable="{cView>/editable/tr}"
+						     maxLength="16"
+						     fieldGroupIds="tr,checkInputs,cp03"
+						     liveChange="_validateInput"/>
+					
+					
+					<m:Label text="{i18n>E-mail}"/>
+					<m:Input id="cp03cont_email" 
+							 required="false"
+							 value="{cData>/disp/cp03cont_email}"
+							 editable="{cView>/editable/tr}"
+						     maxLength="241"
+						     fieldGroupIds="tr,checkInputs,cp03" 
+						     liveChange="_validateInput"/>
+				</f:content>
+				</f:SimpleForm>
+			
+				<f:SimpleForm id="cpbut" title="" layout="ResponsiveGridLayout" class="editableForm" columnsL="1" columnsM="1" emptySpanL="4" emptySpanM="4" labelSpanL="3" labelSpanM="3" maxContainerCols="2" minWidth="1024">
+					<f:content>
+						<m:Bar>
+							<m:contentRight>
+								<m:Button	icon="sap-icon://add"
+											enabled="{cView>/editable/tr}" 
+											type="Transparent" 
+											press="onCpadd" 
+											id="cpadd"/>
+								<m:Button icon="sap-icon://less" 
+										  enabled="{cView>/editable/tr}" 
+										  type="Transparent" 
+										  press="onCpless" 
+										  id="cpless"/>
+							</m:contentRight>
+						</m:Bar>
+					</f:content>
+				</f:SimpleForm>
+					</m:Panel>
+			<m:Text text="{i18n>MediaTek_Disclaimer}"/>	
+			</m:IconTabFilter>
+			
+			
+			<m:IconTabFilter text="{i18n>BankDataforPayment}" key="bk" id="tbk">
+				
+				<m:Panel headerText="{i18n>BankDataforPayment}" id="bk" class="sapUiResponsiveMargin" width="auto" visible="true">
+				
+				<f:SimpleForm id="bkfi" 
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title=""
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+					<f:content>
+						
+						<m:Label text="{i18n>Payment_Methods}"/>
+						<m:MultiInput
+								id="paymeths"
+								value="{cData>/disp/paymeths}"
+								editable="{cView>/editable/bkfi}"
+								visible="{cView>/visible/bkfi}"
+									
+								required="true"
+								maxLength="10"
+								showValueHelp="true" 
+								valueHelpOnly="true"
+								valueHelpRequest="vhBkzlsch"
+								fieldGroupIds="bk,checkInputs,bkfi"	
+								liveChange="_validateInput">
+						</m:MultiInput>
+						
+						<m:Label text="{i18n>Instruction_key}"/>
+						<m:Input id="dtaws" 
+								 value="{cData>/disp/dtaws}" 
+								 editable="{cView>/editable/bkfi}"
+								 visible="{cView>/visible/bkfi}"
+								  description="{cData>/desc/dtaws_desc}"
+								 required="true"
+								 maxLength="2"
+								 showValueHelp="true" 
+								 valueHelpOnly="true"
+							     valueHelpRequest="vhBkfee"
+							     fieldWidth = "10%"
+								 fieldGroupIds="bk,checkInputs,bkfi"
+								 liveChange="_validateInput"
+								 />
+						
+						
+						<m:Label text="{i18n>Recon.Account}"/>
+						<m:Input  id="reco_acc" 
+								  value="{cData>/disp/reco_acc}"
+								  editable="{cView>/editable/bkfi}"
+								  visible="{cView>/visible/bkfi}"
+								    description="{cData>/desc/reco_acc_desc}"
+								  required="true"
+								  maxLength="10"
+								  showValueHelp="true" 
+								  valueHelpOnly="true"
+							      valueHelpRequest="vhBkrecon"
+							       fieldWidth = "30%"
+								  fieldGroupIds="bk,checkInputs,bkfi"
+								  liveChange="_validateInput"/>	
+						
+						
+						<m:Label text="{i18n>Is_Check_Payment?}"
+								 fieldGroupIds="bkm"/>
+						<m:CheckBox selected="{cData>/disp/bkcheck_pay}" 
+									id="bkcheck_pay"  
+									editable="{cView>/editable/bk/}"
+									select="onCheckCk"
+									fieldGroupIds="bkm"
+									/>
+						
+						
+						<m:Label text="{i18n>Pay_to}"
+								 fieldGroupIds="bkm"/>
+						<m:Input id="bkcheck_acc_name" 
+								 editable="{cView>/editable/bk/}"
+								 value="{cData>/disp/bk01acc_name}"
+								 maxLength="140"
+								 fieldGroupIds="bk,checkInputs,bkm"
+								 liveChange="_validateInput"
+								 />
+						
+					</f:content>
+				</f:SimpleForm>					
+				
+				<f:SimpleForm id="bk01" 
+				fieldGroupIds="bkx"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="01"
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+					<f:content>
+						
+					<m:Label  text="{i18n>Bank_Country}" required ="true" fieldGroupIds="bkreq"/>
+					<m:Input id="bk01bank_cn" 
+							 value="{cData>/disp/bk01bank_cn}"
+							 editable="{cView>/editable/bk}"
+							  description="{cData>/desc/bk01bank_cn_desc}"
+
+					         maxLength="3"
+					         showValueHelp="true" 
+					         valueHelpOnly="true"  
+					         valueHelpRequest="vhLand1"  
+					         fieldGroupIds="bk,checkInputs,bk01"
+					         liveChange="_validateInput"/>
+						
+					<m:Label text="{i18n>Local_Bank_Code_and_Branch_Code}" required ="true" fieldGroupIds="bkreq"/> 
+					<m:Input id="bk01code" 
+							 value="{cData>/disp/bk01bank_no}" 
+							 editable="{cView>/editable/bk}"
+
+					         maxLength="15" 
+					         fieldGroupIds="bk,checkInputs2,bk01"
+					         liveChange="_validateInput"/>
+					         
+					<m:Label text="{i18n>SWIFT_Code}" required ="true"  fieldGroupIds="bkreq"/> 
+				<m:VBox> 
+					<m:Input id="bk01swift_code" 
+							 value="{cData>/disp/bk01swift_code}" 
+							 editable="{cView>/editable/bk}"
+
+					         maxLength="11" 
+					         fieldGroupIds="bk,checkInputs2,bk01"
+					         liveChange="_validateInput" />
+					<m:Text text = "{i18n>Bankdesc}" />
+				</m:VBox>					         
+						
+						<m:Label text="{i18n>Bank_Name}" required ="true" fieldGroupIds="bkreq"/>
+						<m:Input id="bk01bank_name" 
+								 value="{cData>/disp/bk01bank_name}" 
+								 editable="{cView>/editable/bk}"
+
+						         maxLength="60" 
+						         fieldGroupIds="bk,checkInputs,bk01"
+						         liveChange="_validateInput"/>
+						
+						<m:Label text="{i18n>Branch_Name}"/>
+						<m:Input id="bk01branch_name" 
+								 value="{cData>/disp/bk01branch_name}" 
+								 editable="{cView>/editable/bk}"
+						         required="false"
+						         maxLength="60" 
+						         fieldGroupIds="bk,checkInputs,bk01"
+						         liveChange="_validateInput"/>
+						
+						
+						<m:Label text="{i18n>City}"/>
+						<m:Input id="bk01bank_city" 
+								 value="{cData>/disp/bk01bank_city}"
+								 editable="{cView>/editable/bk}"
+						         required="false"
+						         maxLength="20" 
+						         fieldGroupIds="bk,checkInputs,bk01"
+						         liveChange="_validateInput"/>
+						
+						
+						<m:Label text="{i18n>Transaction_Currency}" required ="true" fieldGroupIds="bkreq"/>
+						<m:Input id="bk01bank_curr" 
+								 value="{cData>/disp/bk01bank_curr}" 
+								 editable="{cView>/editable/bk}"
+								  description="{cData>/desc/bk01bank_curr_desc}"
+
+						         maxLength="5"
+						         showValueHelp="true" 
+						         valueHelpOnly="true"  
+						         valueHelpRequest="vhBkwaers"  
+						         fieldGroupIds="bk,checkInputs,bk01"
+						         liveChange="_validateInput"/>
+						
+						<m:Label text="{i18n>Account_Holder}" required ="true" fieldGroupIds="bkreq"/>
+						<m:Input id="bk01acc_name"
+								 value="{cData>/disp/bk01acc_name}" 
+								 editable="{cView>/editable/bk}"
+
+						         maxLength="140"
+						         fieldGroupIds="bk,checkInputs,bk01"
+						         liveChange="_validateInput"/>
+						
+						<m:Label text="{i18n>Account_No/IBAN_Code}" required ="true" fieldGroupIds="bkreq"/>
+						<m:Input id="bk01bank_accno" 
+								 value="{cData>/disp/bk01bank_accno}" 
+								 editable="{cView>/editable/bk}"
+
+						         maxLength="38"
+						         fieldGroupIds="bk,checkInputs,bk01"
+						         liveChange="_validateInput"/>
+					
+					</f:content>
+				</f:SimpleForm>
+				<f:SimpleForm id="bk02"
+				fieldGroupIds="bkx"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="02"
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+					<f:content>
+					<m:Label text="{i18n>Bank_Country}" required ="true" fieldGroupIds="bkreq"/>
+					<m:Input id="bk02bank_cn" 
+							 value="{cData>/disp/bk02bank_cn}"
+							 editable="{cView>/editable/bk}"
+							  description="{cData>/desc/bk02bank_cn_desc}"
+
+					         maxLength="3"
+					         showValueHelp="true" 
+					         valueHelpOnly="true"  
+					         valueHelpRequest="vhLand1"  
+					         fieldGroupIds="bk,checkInputs,bk02"
+					         liveChange="_validateInput"/>
+
+					<m:Label text="{i18n>Local_Bank_Code_and_Branch_Code}" required ="true" fieldGroupIds="bkreq"/> 
+					<m:Input id="bk02code" 
+							 value="{cData>/disp/bk02bank_no}" 
+							 editable="{cView>/editable/bk}"
+
+					         maxLength="15" 
+					         fieldGroupIds="bk,checkInputs2,bk02"
+					         liveChange="_validateInput"/>
+
+					<m:Label text="{i18n>SWIFT_Code}" required ="true" fieldGroupIds="bkreq"/> 
+				<m:VBox>	
+					<m:Input id="bk02swift_code" 
+							 value="{cData>/disp/bk02swift_code}" 
+							 editable="{cView>/editable/bk}"
+
+					         maxLength="11" 
+					         fieldGroupIds="bk,checkInputs2,bk02"
+					         liveChange="_validateInput"/>
+					<m:Text text = "{i18n>Bankdesc}" />	
+				</m:VBox>					         
+						
+						<m:Label text="{i18n>Bank_Name}"  required ="true" fieldGroupIds="bkreq"/>
+						<m:Input id="bk02bank_name" 
+								 value="{cData>/disp/bk02bank_name}" 
+								 editable="{cView>/editable/bk}"
+
+						         maxLength="60" 
+						         fieldGroupIds="bk,checkInputs,bk02"
+						         liveChange="_validateInput"/>
+						
+						<m:Label text="{i18n>Branch_Name}"/>
+						<m:Input id="bk02branch_name" 
+								 value="{cData>/disp/bk02branch_name}" 
+								 editable="{cView>/editable/bk}"
+						         required="false"
+						         maxLength="60" 
+						         fieldGroupIds="bk,checkInputs,bk02"
+						         liveChange="_validateInput"/>
+						
+						
+						<m:Label text="{i18n>City}"/>
+						<m:Input id="bk02bank_city" 
+								 value="{cData>/disp/bk02bank_city}"
+								 editable="{cView>/editable/bk}"
+						         required="false"
+						         maxLength="20" 
+						         fieldGroupIds="bk,checkInputs,bk02"
+						         liveChange="_validateInput"/>
+						
+						
+						<m:Label text="{i18n>Transaction_Currency}" required ="true"  fieldGroupIds="bkreq"/>
+						<m:Input id="bk02bank_curr" 
+								 value="{cData>/disp/bk02bank_curr}" 
+								 editable="{cView>/editable/bk}"
+								  description="{cData>/desc/bk02bank_curr_desc}"
+
+						         maxLength="5"
+						         showValueHelp="true" 
+						         valueHelpOnly="true"  
+						         valueHelpRequest="vhBkwaers"  
+						         fieldGroupIds="bk,checkInputs,bk02"
+						         liveChange="_validateInput"/>
+						
+						<m:Label text="{i18n>Account_Holder}" required ="true" fieldGroupIds="bkreq"/>
+						<m:Input id="bk02acc_name"
+								 value="{cData>/disp/bk02acc_name}" 
+								 editable="{cView>/editable/bk}"
+
+						         maxLength="140"
+						         fieldGroupIds="bk,checkInputs,bk02"
+						         liveChange="_validateInput"/>
+						
+						<m:Label text="{i18n>Account_No/IBAN_Code}" required ="true" fieldGroupIds="bkreq"/>
+						<m:Input id="bk02bank_accno" 
+								 value="{cData>/disp/bk02bank_accno}" 
+								 editable="{cView>/editable/bk}"
+
+						         maxLength="38"
+						         fieldGroupIds="bk,checkInputs,bk02"
+						         liveChange="_validateInput"/>
+					
+					</f:content>
+				</f:SimpleForm>
+				<f:SimpleForm id="bk03"  
+					fieldGroupIds="bkx"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="03"
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+					<f:content>
+						
+					<m:Label text="{i18n>Bank_Country}" required ="true" fieldGroupIds="bkreq"/>
+					<m:Input id="bk03bank_cn" 
+							 value="{cData>/disp/bk03bank_cn}"
+							 editable="{cView>/editable/bk}"
+							  description="{cData>/desc/bk03bank_cn_desc}"
+
+					         maxLength="3"
+					         showValueHelp="true" 
+					         valueHelpOnly="true"  
+					         valueHelpRequest="vhLand1"  
+					         fieldGroupIds="bk,checkInputs,bk03"
+					         liveChange="_validateInput"/>
+
+					<m:Label text="{i18n>Local_Bank_Code_and_Branch_Code}" required ="true" fieldGroupIds="bkreq"/> 
+					<m:Input id="bk03code" 
+							 value="{cData>/disp/bk03bank_no}" 
+							 editable="{cView>/editable/bk}"
+
+					         maxLength="15" 
+					         fieldGroupIds="bk,checkInputs2,bk03"
+					         liveChange="_validateInput"/>
+					         
+					<m:Label text="{i18n>SWIFT_Code}" required ="true" fieldGroupIds="bkreq"/> 
+				<m:VBox>	
+					<m:Input id="bk03swift_code" 
+							 value="{cData>/disp/bk03swift_code}" 
+							 editable="{cView>/editable/bk}"
+
+					         maxLength="11" 
+					         fieldGroupIds="bk,checkInputs2,bk03"
+					         liveChange="_validateInput"/>
+					 <m:Text text = "{i18n>Bankdesc}" />	
+				</m:VBox>          
+						
+						<m:Label text="{i18n>Bank_Name}" required ="true" fieldGroupIds="bkreq"/>
+						<m:Input id="bk03bank_name" 
+								 value="{cData>/disp/bk03bank_name}" 
+								 editable="{cView>/editable/bk}"
+
+						         maxLength="60" 
+						         fieldGroupIds="bk,checkInputs,bk03"
+						         liveChange="_validateInput"/>
+						
+						<m:Label text="{i18n>Branch_Name}"/>
+						<m:Input id="bk03branch_name" 
+								 value="{cData>/disp/bk03branch_name}" 
+								 editable="{cView>/editable/bk}"
+						         required="false"
+						         maxLength="60" 
+						         fieldGroupIds="bk,checkInputs,bk03"
+						         liveChange="_validateInput"/>
+						
+						
+						<m:Label text="{i18n>City}"/>
+						<m:Input id="bk03bank_city" 
+								 value="{cData>/disp/bk03bank_city}"
+								 editable="{cView>/editable/bk}"
+						         required="false"
+						         maxLength="20" 
+						         fieldGroupIds="bk,checkInputs,bk03"
+						         liveChange="_validateInput"/>
+						
+						
+						<m:Label text="{i18n>Transaction_Currency}" required ="true" fieldGroupIds="bkreq"/>
+						<m:Input id="bk03bank_curr" 
+								 value="{cData>/disp/bk03bank_curr}" 
+								 editable="{cView>/editable/bk}"
+								  description="{cData>/desc/bk03bank_curr_desc}"
+
+						         maxLength="5"
+						         showValueHelp="true" 
+						         valueHelpOnly="true"  
+						         valueHelpRequest="vhBkwaers"  
+						         fieldGroupIds="bk,checkInputs,bk03"
+						         liveChange="_validateInput"/>
+						
+						<m:Label text="{i18n>Account_Holder}" required ="true" fieldGroupIds="bkreq"/>
+						<m:Input id="bk03acc_name"
+								 value="{cData>/disp/bk03acc_name}" 
+								 editable="{cView>/editable/bk}"
+
+						         maxLength="140"
+						         fieldGroupIds="bk,checkInputs,bk03"
+						         liveChange="_validateInput"/>
+						
+						<m:Label text="{i18n>Account_No/IBAN_Code}" required ="true" fieldGroupIds="bkreq"/>
+						<m:Input id="bk03bank_accno" 
+								 value="{cData>/disp/bk03bank_accno}" 
+								 editable="{cView>/editable/bk}"
+
+						         maxLength="38"
+						         fieldGroupIds="bk,checkInputs,bk03"
+						         liveChange="_validateInput"/>
+					
+					</f:content>
+				</f:SimpleForm>
+			
+				
+				<f:SimpleForm id="bkbut" title="" layout="ResponsiveGridLayout" class="editableForm" columnsL="1" columnsM="1" emptySpanL="4"
+					emptySpanM="4" labelSpanL="3" labelSpanM="3" maxContainerCols="2" minWidth="1024"
+					fieldGroupIds="bkx">
+					<f:content>
+						<m:Bar>
+							<m:contentRight>
+								<m:Button icon="sap-icon://add" 
+								enabled="{cView>/editable/bk/}"
+								type="Transparent" 
+								press="onBkadd" 
+								id="bkadd"/>
+								<m:Button icon="sap-icon://less" 
+								enabled="{cView>/editable/bk/}"
+								type="Transparent" 
+								press="onBkless" 
+								id="bkless"/>
+							</m:contentRight>
+						</m:Bar>
+					</f:content>
+				</f:SimpleForm>
+				</m:Panel>
+			<m:Text text="{i18n>MediaTek_Disclaimer}"/>	
+			</m:IconTabFilter>		
+			
+			
+			<m:IconTabFilter text="{i18n>PaymentQuery}" key="py" id="tpy">
+				
+			<m:Panel headerText="{i18n>PaymentQuery}" id="pyp" class="sapUiResponsiveMargin" width="auto" visible="true">
+		
+			<f:SimpleForm id="py" 
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title=""
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+				<f:content>
+					<m:Label text="{i18n>Do_you_want_to_apply_for_payment_query_function?}"/>
+					<m:CheckBox 
+					selected="{cData>/disp/pyquery_flag}" 
+					editable="{cView>/editable/py}"
+					id="pyquery_flag" 
+					select="onCk"/>		
+				</f:content>
+			</f:SimpleForm>
+			<f:SimpleForm id="py01" 
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="01"
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+			
+				<f:content>
+					<m:Label text="{i18n>Please_input_email_address_as_your_account}"/>
+					<m:Input id="py01query_email" 
+							 value="{cData>/disp/py01query_email}"
+							 editable="{cView>/editable/py}"
+					         required="false"
+					         maxLength="241" 
+					         fieldGroupIds="py,checkInputs,py01"
+					         liveChange="_validateInput"/>
+							 
+					<m:Label text="{i18n>Application_first_name}"/>
+					<m:Input id="py01query_fname" 
+							 value="{cData>/disp/py01query_fname}"
+							 editable="{cView>/editable/py}"
+					         required="false"
+					         maxLength="30" 
+					         fieldGroupIds="py,checkInputs,py01"
+					         liveChange="_validateInput"/>
+
+					<m:Label text="{i18n>Application_last_name}"/>
+					<m:Input id="py01query_lname" 
+							 value="{cData>/disp/py01query_lname}"
+							 editable="{cView>/editable/py}"
+					         required="false"
+					         maxLength="30" 
+					         fieldGroupIds="py,checkInputs,py01"
+					         liveChange="_validateInput"/>					         
+				</f:content>
+			</f:SimpleForm>
+			<f:SimpleForm id="py02" 
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="02"
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+				<f:content>
+					<m:Label text="{i18n>Please_input_email_address_as_your_account}"/>
+					<m:Input id="py02query_email" 
+							 value="{cData>/disp/py02query_email}"
+							 editable="{cView>/editable/py}"
+					         required="false"
+					         maxLength="241" 
+					         fieldGroupIds="py,checkInputs,py02"
+					         liveChange="_validateInput"/>
+							 
+					<m:Label text="{i18n>Application_first_name}"/>
+					<m:Input id="py02query_fname" 
+							 value="{cData>/disp/py02query_fname}"
+							 editable="{cView>/editable/py}"
+					         required="false"
+					         maxLength="30" 
+					         fieldGroupIds="py,checkInputs,py02"
+					         liveChange="_validateInput"/>
+
+					<m:Label text="{i18n>Application_last_name}"/>
+					<m:Input id="py02query_lname" 
+							 value="{cData>/disp/py02query_lname}"
+							 editable="{cView>/editable/py}"
+					         required="false"
+					         maxLength="30" 
+					         fieldGroupIds="py,checkInputs,py02"
+					         liveChange="_validateInput"/>					         
+				</f:content>
+			</f:SimpleForm>
+			<f:SimpleForm id="py03" 
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="03"
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+				<f:content>
+					<m:Label text="{i18n>Please_input_email_address_as_your_account}"/>
+					<m:Input id="py03query_email" 
+							 value="{cData>/disp/py03query_email}"
+							 editable="{cView>/editable/py}"
+					         required="false"
+					         maxLength="241" 
+					         fieldGroupIds="py,checkInputs,py03"
+					         liveChange="_validateInput"/>
+							 
+					<m:Label text="{i18n>Application_first_name}"/>
+					<m:Input id="py03query_fname" 
+							 value="{cData>/disp/py03query_fname}"
+							 editable="{cView>/editable/py}"
+					         required="false"
+					         maxLength="30" 
+					         fieldGroupIds="py,checkInputs,py03"
+					         liveChange="_validateInput"/>
+
+					<m:Label text="{i18n>Application_last_name}"/>
+					<m:Input id="py03query_lname" 
+							 value="{cData>/disp/py03query_lname}"
+							 editable="{cView>/editable/py}"
+					         required="false"
+					         maxLength="30" 
+					         fieldGroupIds="py,checkInputs,py03"
+					         liveChange="_validateInput"/>					         
+				</f:content>
+			</f:SimpleForm>	
+
+			<f:SimpleForm id="pubut" title="" layout="ResponsiveGridLayout" class="editableForm" columnsL="1" columnsM="1" emptySpanL="4"
+					emptySpanM="4" labelSpanL="3" labelSpanM="3" maxContainerCols="2" minWidth="1024">
+					<f:content>
+						<m:Bar>
+							<m:contentRight>
+								<m:Button icon="sap-icon://add" 
+								enabled="{cView>/editable/py}"
+								type="Transparent" 
+								press="onPyadd" 
+								id="pyadd"/>
+								<m:Button icon="sap-icon://less" 
+								enabled="{cView>/editable/py}"
+								type="Transparent" 
+								press="onPyless" 
+								id="pyless"/>
+							</m:contentRight>
+						</m:Bar>
+					</f:content>
+				</f:SimpleForm>							
+			</m:Panel>
+			<m:Text text="{i18n>MediaTek_Disclaimer}"/>	
+			</m:IconTabFilter>
+			
+			
+			<m:IconTabFilter text="{i18n>Remark}" key="rk" id="trk">
+				<m:Panel headerText="{i18n>Remark}" id="rk" class="sapUiResponsiveMargin" width="auto" visible="true">
+				<f:SimpleForm id="rkform" title="" layout="ResponsiveGridLayout">
+					<f:content>
+						<m:VBox>
+						<m:Text text="{i18n>Remarknote}"/>
+						<m:TextArea id="remark" 
+									value="{cData>/disp/remark}"
+									rows="8"
+									editable="{cView>/editable/rm}"
+									liveChange="_validateInput"
+									maxLength="250"
+									width="100%">
+						</m:TextArea>
+						</m:VBox>
+					</f:content>
+				</f:SimpleForm>
+				</m:Panel>
+			<m:Text text="{i18n>MediaTek_Disclaimer}"/>	
+			</m:IconTabFilter>
+				
+				
+			<m:IconTabFilter text="{i18n>Attachment}" key="att">
+				
+				<m:Panel headerText="{i18n>Attachment}" id="att" class="sapUiResponsiveMargin" width="auto" visible="true">
+			
+				<m:VBox alignItems="End">
+				
+				<m:HBox>
+					
+				<m:Label text="{i18n>Pleae_Select_File_Type}" 
+						 labelFor="uptyp" 
+					     visible="{cView>/editable/attach}"
+					     class="sapUiTinyMarginTop"
+					     />
+			
+				<m:Input id="uptyp" 
+						 value="{cData>/uptyp}"
+						 editable="{cView>/editable/attach}"
+				         required="true"
+				         maxLength="10"
+				         showValueHelp="true" 
+				         valueHelpOnly="true"  
+				         valueHelpRequest="vhUptyp"
+				         fieldWidth = "100%"
+				         class="sapUiSmallMarginBegin"
+				         />	
+				         
+				 	<m:Button   
+				 			text="template" 
+							press="onDownloadFiletemp" 
+							id="filetemp"
+							visible="{cView>/visible/filetemp}"
+							class="sapUiSmallMarginBegin"/>        
+				
+					<m:Text id="uptyp_desc" 
+							class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+						     />
+				</m:HBox>
+				
+			
+				
+				</m:VBox>
+			
+				<upload:UploadSet
+							id="UploadSet"
+							instantUpload="true"
+							showIcons="true"
+							uploadEnabled="{cView>/editable/attach}"
+							terminationEnabled="true"
+							items="{path: 'cAttach>/items', templateShareable: false}"
+							beforeUploadStarts="onBeforeUploadStarts"
+							uploadCompleted="onUploadComplete"
+							uploadUrl="/sap/opu/odata/SAP/ZVENDOR_SRV/FileSet"
+							uploadTerminated="onUploadTerminated" 
+							afterItemAdded="onUploadItemAdd"
+							beforeItemRemoved="onItemRemoved"
+							>
+						<upload:items>
+							<upload:UploadSetItem
+							fileName="{cAttach>fileName}"
+							mediaType="{cAttach>mediaType}"
+							url="{cAttach>url}"
+							visibleEdit = "false"
+							enabledEdit="false"
+							enabledRemove="false"
+							visibleRemove="false"
+							thumbnailUrl="{cAttach>thumbnailUrl}"
+							uploadState="{cAttach>uploadState}"
+							attributes="{path: 'cAttach>attributes', templateShareable: false}"
+							statuses="{path : 'cAttach>statuses', templateShareable : false}" >
+							<upload:attributes>
+							<m:ObjectAttribute
+									title="{cAttach>title}"
+									text="{cAttach>text}"
+									active="{cAttach>active}"/>
+							</upload:attributes>
+							<upload:statuses>
+								<m:ObjectStatus 
+								title="{cAttach>title}" 
+								text="{cAttach>text}" state="{cAttach>state}"/>
+							</upload:statuses>						
+							</upload:UploadSetItem>
+						</upload:items>
+			
+				</upload:UploadSet>							
+					
+					
+			
+				</m:Panel>
+				<m:Text text="{i18n>MediaTek_Disclaimer}"/>	
+				</m:IconTabFilter>
+		</m:items>
+		</m:IconTabBar>
+		
+		</m:content>
+		<m:footer>
+			<m:Toolbar>
+				<m:ToolbarSpacer/>
+				<m:Button  text="{i18n>Save}" 
+						   type="Emphasized" 
+						   press="onSave"  
+						   id="dataSave"
+						   enabled="{cView>/enable/sav}"
+						   visible="{cView>/visible/sav}"/>
+						   
+				<m:Button   text="{i18n>Submit}" 
+							type="Emphasized" 
+							press="onSubmit" 
+							id="dataSubmit"
+							enabled="{cView>/enable/submit}"
+							visible="{cView>/visible/submit}"/>
+							
+				<m:Button  text="{i18n>WriteToSAP}" 
+						   type="Emphasized" 
+						   press="onWrite" 
+						   id="dataWrite"
+						   enabled="{cView>/enable/writesap}"
+						   visible="{cView>/visible/writesap}"/>
+						   
+				<m:Button  text="{i18n>Cancel}" 
+						   type="Emphasized" 
+						   press="onCancel" 
+						   id="dataCancel"
+						   enabled="{cView>/enable/cancel}"
+						   visible="{cView>/visible/cancel}"/>
+						   
+				<m:Button  text="{i18n>Close}" 
+						   type="Emphasized" 
+						   press="onClose" 
+						   id="dataClose"
+						   enabled="{cView>/enable/clos}"
+						   visible="{cView>/visible/clos}"/>
+						   
+				<m:Button  text="{i18n>Change_log}"    
+						   type="Emphasized" 
+						   press="onChglog" 
+						   id="dataChglog"
+						   enabled="{cView>/enable/chglog}"
+						   visible="{cView>/visible/chglog}"/>
+						   
+				<m:Button  text="{i18n>Approve_History}" 
+						   type="Emphasized" 
+						   press="onApphis" 
+						   id="dataApphis"
+						   enabled="{cView>/enable/applog}"
+						   visible="{cView>/visible/applog}"/>
+
+						   
+				<m:Button  text="{i18n>Resend_Email}" 
+						   type="Emphasized" 
+						   press="onRemail" 
+						   id="dataRemail"
+						   enabled="{cView>/enable/reemail}"
+						   visible="{cView>/visible/reemail}"/>
+						   
+				<m:Button icon="sap-icon://message-popup" 
+						  text="{i18n>Message} {= ${message>/}.length }" 
+						  type="Transparent" 
+						  press="onMsg" 
+						  id="msgpopover"
+						  />
+			</m:Toolbar>
+		</m:footer>
+			</m:Page>
+		</m:pages>
+	</m:App>
+</mvc:View>

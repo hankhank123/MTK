@@ -1,0 +1,233 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='P02CLNT800')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='P02CLNT800')/$value">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='P02CLNT800')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='P02CLNT800')/$value">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='P02CLNT800')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='P02CLNT800')/$value">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='P02CLNT800')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='P02CLNT800')/$value">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='P02CLNT800')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZVENDOR_SRV" xml:lang="zf" sap:schema-version="1">
+            <EntityType Name="File" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="長度 16 的欄位"/>
+                <Property Name="FileName" Type="Edm.String" MaxLength="255" m:FC_TargetPath="SyndicationTitle" m:FC_KeepInContent="false" sap:unicode="false" sap:label="Char255"/>
+                <Property Name="Date" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="DATS 類型欄位"/>
+                <Property Name="Time" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="類型 TIMS 的欄位"/>
+                <Property Name="Value" Type="Edm.Binary" sap:unicode="false" sap:label="binärer String"/>
+                <Property Name="MIMEType" Type="Edm.String" MaxLength="100" sap:unicode="false" sap:label="字元 100"/>
+            </EntityType>
+            <EntityType Name="zsworkid" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="訓練活動" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Workid" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="字元 20" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ZI_Vendor_dataType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="workid"/>
+                </Key>
+   
+   
+   
+                <Property Name="checkdata" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label=""/>
+                <Property Name="role" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label=""/>
+                <Property Name="remark" Type="Edm.String" MaxLength="250" sap:display-format="UpperCase" sap:label=""/>
+                <Property Name="status" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label=""/>
+            </EntityType>
+            <EntityType Name="ZI_Vendor_attachType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="documentid"/>
+                </Key>
+                <Property Name="documentid" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="workid" Type="Edm.String" MaxLength="20"/>
+                <Property Name="vendor_id" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="供應商" sap:quickinfo="供應商或貸方的帳號"/>
+                <Property Name="del" Type="Edm.String" MaxLength="1"/>
+                <Property Name="filename" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase" sap:label="字元 100" sap:heading=""/>
+                <Property Name="mimetype" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase" sap:label="字元 100" sap:heading=""/>
+                <Property Name="fsize" Type="Edm.String" MaxLength="20"/>
+                <Property Name="url" Type="Edm.String" MaxLength="200"/>
+                <Property Name="updtitle" Type="Edm.String" MaxLength="20"/>
+                <Property Name="updtext" Type="Edm.String" MaxLength="20"/>
+                <Property Name="updactive" Type="Edm.String" MaxLength="20"/>
+                <Property Name="upttitle" Type="Edm.String" MaxLength="20"/>
+                <Property Name="uptext" Type="Edm.String" MaxLength="20"/>
+                <Property Name="uptactive" Type="Edm.String" MaxLength="20"/>
+                <Property Name="upftitle" Type="Edm.String" MaxLength="20"/>
+                <Property Name="upftext" Type="Edm.String" MaxLength="20"/>
+                <Property Name="upfactive" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ststitle" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ststext" Type="Edm.String" MaxLength="20"/>
+                <Property Name="stsstate" Type="Edm.String" MaxLength="20"/>
+            </EntityType>
+            <EntityType Name="ZI_Vendor_msgType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="workid"/>
+                    <PropertyRef Name="buzei"/>
+                </Key>
+                <Property Name="workid" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="buzei" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative"/>
+                <Property Name="type" Type="Edm.String" MaxLength="10"/>
+                <Property Name="title" Type="Edm.String" MaxLength="10"/>
+                <Property Name="description" Type="Edm.String" MaxLength="30"/>
+                <Property Name="subtitle" Type="Edm.String" MaxLength="20"/>
+                <Property Name="controlid" Type="Edm.String" MaxLength="10"/>
+                <Property Name="controltab" Type="Edm.String" MaxLength="10"/>
+            </EntityType>
+            <EntityType Name="vhBukrsType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="公司代碼"/>
+                <Property Name="text" Type="Edm.String" MaxLength="25" sap:label="公司名稱" sap:quickinfo="公司代碼或公司名稱"/>
+            </EntityType>
+            <EntityType Name="vhLand1Type" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="國家代碼"/>
+                <Property Name="text" Type="Edm.String" MaxLength="50" sap:label="國家名稱" sap:quickinfo="國名﹝最多 50 字元﹞"/>
+            </EntityType>
+            <EntityType Name="vhZtermType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="付款條件" sap:quickinfo="付款條件碼"/>
+                <Property Name="text" Type="Edm.String" MaxLength="50" sap:label="自有解釋" sap:quickinfo="付款條件的自有解釋"/>
+            </EntityType>
+            <EntityType Name="vhTrwaersType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="幣別" sap:quickinfo="幣別碼" sap:semantics="currency-code"/>
+                <Property Name="text" Type="Edm.String" MaxLength="40" sap:label="長文"/>
+            </EntityType>
+            <EntityType Name="vhTrstermType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="國貿條件" sap:quickinfo="國貿條件〈第 1 部份〉"/>
+                <Property Name="text" Type="Edm.String" MaxLength="30" sap:label="說明"/>
+            </EntityType>
+            <EntityType Name="vhCpfuncType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="功能" sap:quickinfo="夥伴功能"/>
+                <Property Name="text" Type="Edm.String" MaxLength="30" sap:label="說明"/>
+            </EntityType>
+            <EntityType Name="vhBkzlschType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="land1"/>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="國家代碼"/>
+                <Property Name="id" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="付款方法"/>
+                <Property Name="text" Type="Edm.String" MaxLength="30" sap:label="名稱" sap:quickinfo="付款方法名稱〈國家語言〉"/>
+            </EntityType>
+            <EntityType Name="vhBkfeeType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="banks"/>
+                    <PropertyRef Name="zlsch"/>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="banks" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="銀行所在國家" sap:quickinfo="銀行所在國家碼"/>
+                <Property Name="zlsch" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="付款方法"/>
+                <Property Name="id" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:label="指示碼" sap:quickinfo="資枓媒體交換的指示碼"/>
+                <Property Name="text" Type="Edm.String" MaxLength="50" sap:label="解說" sap:quickinfo="說明指示碼的內文"/>
+            </EntityType>
+            <EntityType Name="vhBkreconType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ktopl"/>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="ktopl" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="會計科目表"/>
+                <Property Name="id" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="總帳科目" sap:quickinfo="總帳科目號碼"/>
+                <Property Name="text" Type="Edm.String" MaxLength="50" sap:label="總帳科目長文"/>
+            </EntityType>
+            <EntityType Name="vhBkwaersType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="zbukr"/>
+                    <PropertyRef Name="zlsch"/>
+                </Key>
+                <Property Name="zbukr" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="付款公司代碼"/>
+                <Property Name="zlsch" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="付款方法"/>
+                <Property Name="id" Type="Edm.String" MaxLength="5" sap:label="幣別" sap:quickinfo="幣別碼" sap:semantics="currency-code"/>
+                <Property Name="text" Type="Edm.String" MaxLength="40" sap:label="長文"/>
+            </EntityType>
+            <EntityContainer Name="ZVENDOR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="FileSet" EntityType="ZVENDOR_SRV.File" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="zsworkidSet" EntityType="ZVENDOR_SRV.zsworkid" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ZI_Vendor_data" EntityType="ZVENDOR_SRV.ZI_Vendor_dataType" sap:content-version="1"/>
+                <EntitySet Name="ZI_Vendor_attach" EntityType="ZVENDOR_SRV.ZI_Vendor_attachType" sap:content-version="1"/>
+                <EntitySet Name="ZI_Vendor_msg" EntityType="ZVENDOR_SRV.ZI_Vendor_msgType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="vhBukrs" EntityType="ZVENDOR_SRV.vhBukrsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="vhLand1" EntityType="ZVENDOR_SRV.vhLand1Type" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="vhZterm" EntityType="ZVENDOR_SRV.vhZtermType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="vhTrwaers" EntityType="ZVENDOR_SRV.vhTrwaersType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="vhTrsterm" EntityType="ZVENDOR_SRV.vhTrstermType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="vhCpfunc" EntityType="ZVENDOR_SRV.vhCpfuncType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="vhBkzlsch" EntityType="ZVENDOR_SRV.vhBkzlschType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="vhBkfee" EntityType="ZVENDOR_SRV.vhBkfeeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="vhBkrecon" EntityType="ZVENDOR_SRV.vhBkreconType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="vhBkwaers" EntityType="ZVENDOR_SRV.vhBkwaersType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_zui_vendor.cds_zui_vendor_Entities">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZVENDOR_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZVENDOR_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

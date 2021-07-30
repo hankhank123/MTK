@@ -1,0 +1,11 @@
+<core:FragmentDefinition
+	xmlns:m="sap.m"
+	xmlns:core="sap.ui.core">
+	<m:Dialog id="enterOTP" title="Enter OTP">
+		<m:Input placeholder="Enter OTP" id="code" 
+		 value="{cData>/checkcode}"/>
+	<m:buttons>
+		<m:Button id="onCheckcode" press="onCheckClose" text="Ok"/>
+	</m:buttons>
+	</m:Dialog>
+</core:FragmentDefinition>

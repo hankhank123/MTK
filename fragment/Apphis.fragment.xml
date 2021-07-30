@@ -1,0 +1,104 @@
+<core:FragmentDefinition xmlns="sap.m" 
+						 xmlns:m="sap.m" 
+						 xmlns:t="sap.ui.table" 
+						 xmlns:core="sap.ui.core">
+	<m:Dialog title="{i18n>Approve_History}" 
+			  showHeader = "true" 
+			  stretch = 'true'
+			  
+			  >
+		<m:Bar>
+			<m:contentRight>
+				<m:Button icon="sap-icon://decline" type="Transparent" press="onApphisClose"/>
+			</m:contentRight>
+		</m:Bar>
+		<t:Table id="apphis" 
+				 rows="{/ZI_Vendor_changelog}" 	
+				 selectionMode="Single" 
+				 				 >
+				 <!--visibleRowCount="10"-->
+			<t:columns>
+				<t:Column width="9rem">
+					<m:Label text="{i18n>Document_Number}"/>
+					<t:template>
+						<m:Input value="{change_no}" editable="false"/>
+					</t:template>
+				</t:Column>					
+				<t:Column width="5rem">
+					<m:Label text="{i18n>Date}"/>
+					<t:template>
+						<Text text="{ path: 'udate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short' } }"/>
+					</t:template>
+				</t:Column>
+				<t:Column width="5rem">
+					<m:Label text="{i18n>Time}"/>
+					<t:template>
+							<Text text="{ path: 'utime', formatter: '.formatter.time'}"/>
+					</t:template>
+				</t:Column>
+				<t:Column width="7rem">
+					<m:Label text="{i18n>User_Name}"/>
+					<t:template>
+						<m:Input value="{username}" editable="false"/>
+					</t:template>
+				</t:Column>					
+				<t:Column width="8rem">
+					<m:Label text="{i18n>Scene}"/>
+					<t:template>
+						<m:Input value="{scene}" editable="false"/>
+					</t:template>
+				</t:Column>	
+				<t:Column width="5rem">
+					<m:Label text="{i18n>Action}"/>
+					<t:template>
+							<Text text="{ path: 'action', formatter: '.formatter.action'}"/>
+					</t:template>
+				</t:Column>
+				<t:Column width="6rem">
+					<m:Label text="{i18n>Role}"/>
+					<t:template>
+						<m:Input value="{role}" editable="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column width="4rem">
+					<m:Label text="{i18n>Status}"/>
+					<t:template>
+						<!--<m:Input value="{status}" editable="false"/>-->
+						<Text text="{ path: 'status', formatter: '.formatter.status'}"/>
+					</t:template>
+				</t:Column>	
+				<t:Column width="6rem">
+					<m:Label text="{i18n>Submitted}"/>
+					<t:template>
+						<!--<m:Input value="{submitted}" editable="false"/>-->
+						<Text text="{ path: 'submitted', formatter: '.formatter.submitted'}"/>
+					</t:template>
+				</t:Column>					
+				<t:Column width="10rem">
+					<m:Label text="{i18n>Field}"/>
+					<t:template>
+						<m:Input value="{field}" editable="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column width="13rem">
+					<m:Label text="{i18n>Old}" wrapping="true"/>
+					<t:template>
+						<m:Input value="{path:'old_value', formatter: '.formatter.status'}" editable="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column width="13rem">
+					<m:Label text="{i18n>New}" wrapping="true"/>
+					<t:template>
+						<m:Input value="{ path:'new_value', formatter: '.formatter.status'}" editable="false"/>
+					</t:template>
+				</t:Column>
+				<t:Column width="8rem">
+					<m:Label text="{i18n>Table_Name}"/>
+					<t:template>
+						<m:Input value="{tabname}" editable="false"/>
+					</t:template>
+				</t:Column>				
+			</t:columns>
+		</t:Table>
+	</m:Dialog>
+</core:FragmentDefinition>
